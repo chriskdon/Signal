@@ -21,7 +21,7 @@ public final class SignalToDetectorMapSet {
    * @param <TSignal>
    * @param <TDetector>
    */
-  public <TSignal extends Signal, TDetector extends Detector<TSignal>> void add(Class<TSignal> signalClass,
+  public synchronized <TSignal extends Signal, TDetector extends Detector<TSignal>> void add(Class<TSignal> signalClass,
                                                                                 Class<TDetector> detectorClass) {
 
     Set<Class> detectorSet = signalToDetectorMapSet.get(signalClass);
@@ -38,7 +38,7 @@ public final class SignalToDetectorMapSet {
    * Aggregate two SignalToDetectorMapSets together.
    * @param signalToDetectorMapSet
    */
-  public void add(SignalToDetectorMapSet signalToDetectorMapSet) {
+  public synchronized void add(SignalToDetectorMapSet signalToDetectorMapSet) {
     Map<Class, Set<Class>> paramMapSet = signalToDetectorMapSet.signalToDetectorMapSet;
 
     for(Class signalClass : paramMapSet.keySet()) {
@@ -61,7 +61,7 @@ public final class SignalToDetectorMapSet {
    * @param <TSignal>
    * @return
    */
-  public <TSignal extends Signal> Collection<Class> getDetectorTypesFor(Class<TSignal> signalClass) {
+  public synchronized  <TSignal extends Signal> Collection<Class> getDetectorTypesFor(Class<TSignal> signalClass) {
     Set<Class> detectorList = signalToDetectorMapSet.get(signalClass);
 
     if (detectorList == null) {
