@@ -1,1 +1,1 @@
-script: ./java/mvn test
+script: mvn -f ./Signal/java/pom.xml test
