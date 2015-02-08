@@ -1,1 +1,4 @@
+jdk:
+  - oraclejdk8
+
 script: mvn -f ./java/pom.xml test
