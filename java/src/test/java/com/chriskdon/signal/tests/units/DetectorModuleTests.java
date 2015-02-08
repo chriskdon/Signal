@@ -1,4 +1,4 @@
-package com.chriskdon.signal.tests.units.base;
+package com.chriskdon.signal.tests.units;
 
 import com.chriskdon.signal.tests.mocks.MockDetectorModule;
 import org.junit.*;

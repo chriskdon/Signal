@@ -2,6 +2,7 @@ package com.chriskdon.signal.tests.units.base;
 
 import com.chriskdon.signal.Detector;
 import com.chriskdon.signal.DetectorModule;
+import com.chriskdon.signal.Reference;
 import com.chriskdon.signal.base.BaseDispatcher;
 import com.chriskdon.signal.tests.mocks.MockSignal;
 import org.junit.*;
@@ -17,8 +18,12 @@ public class BaseDispatcherTests {
 
     MockSignalDetectorOther.StaticHandleCallCount.set(0);
     dispatcher.registerDetectorModule(new MockDetectorModule()); // Detectors
-    dispatcher.signal(new MockSignal());
-    dispatcher.signal(new MockSignal());
+
+    Reference ref = dispatcher.signal(new MockSignal());
+    Reference ref2 = dispatcher.signal(new MockSignal());
+
+    ref.complete();
+    ref2.complete();
 
     Assert.assertEquals(2, MockSignalDetectorOther.StaticHandleCallCount.get());
   }

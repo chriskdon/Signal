@@ -1,5 +1,7 @@
 package com.chriskdon.signal;
 
+import com.chriskdon.signal.exceptions.ArgumentNullException;
+
 /**
  * Handles signals.
  * @param <TSignal> The type of signal handled by this detector.
@@ -14,11 +16,15 @@ public abstract class Detector<TSignal extends Signal> {
    */
   public final void setReference(Reference reference) {
     if(reference == null) {
-      throw new IllegalArgumentException("`reference` can't be null.");
+      throw new ArgumentNullException("reference");
     }
 
     this.reference = reference;
   }
 
+  /**
+   * Handle a signal sent to the detector.
+   * @param signal
+   */
   public abstract void handleSignal(TSignal signal);
 }
