@@ -14,18 +14,20 @@ public class BaseDispatcherTests {
   public void SendSignalTest() {
     BaseDispatcher dispatcher = new BaseDispatcher();
 
-    dispatcher.signal(new MockSignal()); // No Detectors
+    // No Detectors
+    dispatcher.signal(new MockSignal());
 
-    MockSignalDetectorOther.StaticHandleCallCount.set(0);
-    dispatcher.registerDetectorModule(new MockDetectorModule()); // Detectors
+    for(int i = 0; i < 100; i++) { // Find possible threading issues
+      MockSignalDetectorOther.StaticHandleCallCount.set(0);
 
-    Reference ref = dispatcher.signal(new MockSignal());
-    Reference ref2 = dispatcher.signal(new MockSignal());
-
-    ref.complete();
-    ref2.complete();
-
-    Assert.assertEquals(2, MockSignalDetectorOther.StaticHandleCallCount.get());
+      // Detectors
+      dispatcher.registerDetectorModule(new MockDetectorModule());
+      Reference ref = dispatcher.signal(new MockSignal());
+      Reference ref2 = dispatcher.signal(new MockSignal());
+      ref.complete();
+      ref2.complete();
+      Assert.assertEquals(2, MockSignalDetectorOther.StaticHandleCallCount.get());
+    }
   }
 
   @Test
