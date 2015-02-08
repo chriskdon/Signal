@@ -27,7 +27,6 @@ public class BaseDetectorFactoryTests {
       Assert.fail();
     }
 
-
     try {
       detectorTypes.add(MockSignalDetector.class);
       detectors = factory.buildFrom(detectorTypes, new MockReference());
