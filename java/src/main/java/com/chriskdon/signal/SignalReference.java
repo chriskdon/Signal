@@ -1,8 +1,5 @@
 package com.chriskdon.signal;
 
-import com.chriskdon.signal.Reference;
-import com.chriskdon.signal.Signal;
-
 class SignalReference<TSignal extends Signal> extends Reference<TSignal> {
   private boolean allDetectorsComplete = false; // Set by the dispatcher when all detectors have completed their work.
   private Object allDetectorsCompleteSync = new Object();
@@ -20,7 +17,7 @@ class SignalReference<TSignal extends Signal> extends Reference<TSignal> {
 
   @Override
   public void complete() {
-   synchronized (allDetectorsCompleteSync) {
+    synchronized (allDetectorsCompleteSync) {
       if (allDetectorsComplete) {
         return;
       } else {
