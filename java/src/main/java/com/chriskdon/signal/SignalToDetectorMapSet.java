@@ -1,7 +1,4 @@
-package com.chriskdon.signal.base;
-
-import com.chriskdon.signal.Detector;
-import com.chriskdon.signal.Signal;
+package com.chriskdon.signal;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Store the mappings from signals to detectors that will handle the signals.
  */
-public final class SignalToDetectorMapSet {
+final class SignalToDetectorMapSet {
   private Map<Class, Set<Class>> signalToDetectorMapSet; // Concurrent access to members
 
   public SignalToDetectorMapSet() {
@@ -61,7 +58,7 @@ public final class SignalToDetectorMapSet {
    * @param <TSignal>
    * @return
    */
-  public synchronized  <TSignal extends Signal> Collection<Class> getDetectorTypesFor(Class<TSignal> signalClass) {
+  public synchronized <TSignal extends Signal> Collection<Class> getDetectorTypesFor(Class<TSignal> signalClass) {
     Set<Class> detectorList = signalToDetectorMapSet.get(signalClass);
 
     if (detectorList == null) {
@@ -69,6 +66,18 @@ public final class SignalToDetectorMapSet {
     }
 
     return detectorList;
+  }
+
+  /**
+   * Get a deep copy of the map set so no list references are the same. Modifying
+   * the new map set will not affect the old one.
+   *
+   * @return The deep copy.
+   */
+  public synchronized SignalToDetectorMapSet getDeepCopy() {
+    SignalToDetectorMapSet newSet = new SignalToDetectorMapSet();
+    newSet.add(this);
+    return newSet;
   }
 
   private Set<Class> newClassSet() {

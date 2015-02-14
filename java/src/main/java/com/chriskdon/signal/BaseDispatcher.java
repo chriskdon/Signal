@@ -1,19 +1,16 @@
-package com.chriskdon.signal.base;
-
-import com.chriskdon.signal.*;
+package com.chriskdon.signal;
 
 import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
-public final class BaseDispatcher implements Dispatcher {
+final class BaseDispatcher implements Dispatcher {
   private SignalToDetectorMapSet signalMap;
   private DetectorFactory detectorFactory;
   private ExecutorService threadPool;
 
-  public BaseDispatcher() {
-    this.signalMap = new SignalToDetectorMapSet();
+  public BaseDispatcher(SignalToDetectorMapSet signalMap) {
+    this.signalMap = signalMap;
     this.detectorFactory = new DetectorFactory();
     this.threadPool = Executors.newFixedThreadPool(getOptimalThreadCount());
   }
@@ -23,7 +20,7 @@ public final class BaseDispatcher implements Dispatcher {
     SignalReference<TSignal> reference = new SignalReference(signal);
 
     threadPool.execute(() -> {
-      Class<TSignal> signalClass = (Class<TSignal>)signal.getClass();
+      Class<TSignal> signalClass = (Class<TSignal>) signal.getClass();
       Collection<Class> detectorClasses = signalMap.getDetectorTypesFor(signalClass);
 
       try {
@@ -38,13 +35,9 @@ public final class BaseDispatcher implements Dispatcher {
     return reference;
   }
 
-  @Override
-  public void registerDetectorModule(DetectorModule detectorModule) {
-    signalMap.add(detectorModule.getDetectors());
-  }
-
   /**
    * Determine the optimal number of threads for this machine.
+   *
    * @return The optimal number of threads.
    */
   private int getOptimalThreadCount() {

@@ -1,9 +1,9 @@
-package com.chriskdon.signal.base;
+package com.chriskdon.signal;
 
 import com.chriskdon.signal.Reference;
 import com.chriskdon.signal.Signal;
 
-public class SignalReference<TSignal extends Signal> extends Reference<TSignal> {
+class SignalReference<TSignal extends Signal> extends Reference<TSignal> {
   private boolean allDetectorsComplete = false; // Set by the dispatcher when all detectors have completed their work.
   private Object allDetectorsCompleteSync = new Object();
 

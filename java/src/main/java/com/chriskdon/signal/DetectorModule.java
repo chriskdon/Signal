@@ -1,7 +1,5 @@
 package com.chriskdon.signal;
 
-import com.chriskdon.signal.base.SignalToDetectorMapSet;
-
 /**
  * Link signals to detectors.
  */
@@ -14,6 +12,7 @@ public abstract class DetectorModule {
 
   /**
    * Register a signal to be handled by a detector.
+   *
    * @param <TSignal>
    * @param <TDetector>
    */
@@ -25,6 +24,7 @@ public abstract class DetectorModule {
 
   /**
    * All the registered detectors
+   *
    * @return
    */
   public final SignalToDetectorMapSet getDetectors() {

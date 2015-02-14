@@ -1,4 +1,4 @@
-package com.chriskdon.signal.base;
+package com.chriskdon.signal;
 
 import com.chriskdon.signal.Detector;
 import com.chriskdon.signal.Reference;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Creates instances of the detectors.
  */
-public class DetectorFactory {
+class DetectorFactory {
 
   /**
    * Return instances of the detectors for a signal based on the classes.
