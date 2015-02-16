@@ -23,7 +23,7 @@ class DetectorFactory {
    * @throws IllegalAccessException
    */
   public <TSignal extends Signal> Collection<Detector<TSignal>> buildFrom(Collection<Class> detectorClasses,
-                                                                          Reference reference)
+                                                                          SignalReference reference)
       throws InstantiationException, IllegalAccessException {
 
     List<Detector<TSignal>> detectorInstances = new ArrayList<Detector<TSignal>>(detectorClasses.size());
@@ -32,6 +32,8 @@ class DetectorFactory {
       Detector<TSignal> detector = constructDetectorFromClass(detectorClass, reference);
       detectorInstances.add(detector);
     }
+
+    reference.setDetectors(detectorInstances);
 
     return detectorInstances;
   }

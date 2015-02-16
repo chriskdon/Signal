@@ -5,7 +5,7 @@ import com.chriskdon.signal.exceptions.ArgumentNullException;
 /**
  * Handles information related to a signal.
  */
-public abstract class Reference<TSignal extends Signal> {
+public abstract class Reference<TSignal extends Signal> implements Signaler {
   private TSignal signal; // The signal this reference is for.
 
   public Reference(TSignal signal) {

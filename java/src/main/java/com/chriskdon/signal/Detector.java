@@ -1,7 +1,6 @@
 package com.chriskdon.signal;
 
 import com.chriskdon.signal.exceptions.ArgumentNullException;
-import sun.plugin.dom.exception.InvalidStateException;
 
 /**
  * Handles signals.
@@ -25,7 +24,7 @@ public abstract class Detector<TSignal extends Signal> {
 
   public Reference getReference() {
     if(reference == null) {
-      throw new InvalidStateException("Reference should have been set on instance construction.");
+      throw new NullPointerException("Reference should have been set on instance construction.");
     }
 
     return reference;

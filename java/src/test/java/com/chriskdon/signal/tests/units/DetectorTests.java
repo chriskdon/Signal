@@ -7,7 +7,6 @@ import com.chriskdon.signal.tests.mocks.MockSignalDetector;
 import com.chriskdon.signal.tests.mocks.MockSignalReference;
 import junit.framework.Assert;
 import org.junit.Test;
-import sun.plugin.dom.exception.InvalidStateException;
 
 public class DetectorTests {
   @Test
@@ -23,7 +22,7 @@ public class DetectorTests {
     detector.setReference(null);
   }
 
-  @Test(expected = InvalidStateException.class)
+  @Test(expected = NullPointerException.class)
   public void getNullReferenceTest() {
     Detector<MockSignal> detector = new MockSignalDetector();
     detector.getReference();
