@@ -4,7 +4,7 @@ A distributed cross-platform signalling library. Fire signal events that are han
 [![Build Status](https://travis-ci.org/ChrisKdon/Signal.svg)](https://travis-ci.org/ChrisKdon/Signal)
 
 ## TODO
-* Threaded Detectors/Dispatch
+* ~~Threaded Detectors/Dispatch~~
 * `Reference` API (`waitFor`, `then`, etc.)
 * RPC Calls (Apache Avro Integration)
 * Cross-Platform/Language Support
