@@ -8,3 +8,7 @@ A distributed cross-platform signalling library. Fire signal events that are han
 * `Reference` API (`waitFor`, `then`, etc.)
 * RPC Calls (Apache Avro Integration)
 * Cross-Platform/Language Support
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ChrisKdon/signal/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
